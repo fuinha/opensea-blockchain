@@ -45,7 +45,7 @@ const Header = () => {
         />
       </div>
       <div className={style.headerItems}>
-        <Link href="/collections/0x6B51786C215e310713177b71aBcaa066e50C1029">
+        <Link href="/collections/0xa08b847d5dC8833700C28200475Ac3c64cb0DFaE">
           <div className={style.headerItem}>Collections</div>
         </Link>
         <div className={`${style.headerItem} hidden md:block`}>Stats</div>

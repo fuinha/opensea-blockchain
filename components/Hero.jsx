@@ -3,11 +3,11 @@ import React from 'react'
 
 const style = {
   wrapper: `relative`,
-  container: `before:content-[''] before:bg-red-500 before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[url('/hero.png')] before:bg-cover before:bg-center before:opacity-40 before:blur-[1px]`,
+  container: `before:content-[''] -z-10 before:bg-red-500 before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[url('/hero.png')] before:bg-cover before:bg-center before:opacity-40 before:blur-[1px]`,
   contentWrapper: `relative flex flex-wrap items-center justify-center h-screen text-center md:text-start`,
   copyContainer: `md:w-1/2 px-4 md:px-0`,
-  title: `relative text-white text-5xl md:text-[46px] font-semibold`,
-  description: `text-[#b2b8bd] container-[400px] text-2xl mt-[0.8rem] mb-[2.5rem]`,
+  title: `relative text-white text-5xl md:text-[46px] font-semibold tracking-wide`,
+  description: `text-[#b2b8bd] z-10 container-[400px] text-2xl mt-[0.8rem] mb-[2.5rem]`,
   ctaContainer: `flex`,
   accentedButton: `relative text-lg font-semibold px-12 py-4 bg-[#2181e2] rounded-lg mr-5 text-white hover:bg-[#42a0ff] cursor-pointer`,
   button: `relative text-lg font-semibold px-12 py-4 bg-[#363840] rounded-lg mr-5 text-[#e4e8ea] hover:bg-[#4c505c] cursor-pointer`,
