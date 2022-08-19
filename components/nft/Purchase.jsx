@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ThirdwebSDK } from '@thirdweb-dev/sdk'
+import { useAddress, useMarketplace } from '@thirdweb-dev/react'
 
 import { HiTag } from 'react-icons/hi'
 import { IoMdWallet } from 'react-icons/io'
@@ -14,9 +14,8 @@ const style = {
 const Purchase = ({ isListed, selectedNft, listings }) => {
   const [selectedMarketNft, setSelectedMarketNft] = useState()
   const [enableButton, setEnableButton] = useState()
-  
-  const sdk = new ThirdwebSDK('rinkeby')
-  const marketPlaceModule = sdk.getMarketplace(
+  const address = useAddress()
+  const marketplaceContract = useMarketplace(
     '0x7600aB00c4524E11da066650Dd053040D0880EB0'
   )
 
@@ -24,7 +23,10 @@ const Purchase = ({ isListed, selectedNft, listings }) => {
     if (!listings || isListed === 'false') return
     ;(async () => {
       setSelectedMarketNft(
-        listings.find((marketNft) => marketNft.asset?.id.toNumber() === selectedNft.id.toNumber())
+        listings.find(
+          (marketNft) =>
+            marketNft.asset?.id.toNumber() === selectedNft.id.toNumber()
+        )
       )
     })()
   }, [selectedNft, isListed, listings])
@@ -36,7 +38,7 @@ const Purchase = ({ isListed, selectedNft, listings }) => {
     if (!selectedMarketNft || !selectedNft) return
 
     setEnableButton(true)
-  }, [selectedMarketNft, selectedNft])
+  }, [address, selectedMarketNft, selectedNft])
 
   const confirmPurchase = (toastHandler = toast) => {
     toastHandler.success(`Purchase successful!`, {
@@ -50,9 +52,10 @@ const Purchase = ({ isListed, selectedNft, listings }) => {
   const buyItem = async (
     listingId = selectedMarketNft.id,
     quantityDesired = 1,
-    module = marketPlaceModule
+    module = marketplaceContract
   ) => {
-    await module.buyoutListing(listingId, quantityDesired);
+    if (!address) return
+    await module.buyoutListing(listingId, quantityDesired)
     confirmPurchase()
   }
 
@@ -61,7 +64,7 @@ const Purchase = ({ isListed, selectedNft, listings }) => {
       <Toaster position="top-center" reverseOrder={false} />
       {isListed === 'true' ? (
         <>
-          <div
+          <button
             onClick={() => {
               enableButton ? buyItem(selectedMarketNft.id, 1) : null
             }}
@@ -69,7 +72,7 @@ const Purchase = ({ isListed, selectedNft, listings }) => {
           >
             <IoMdWallet className={style.buttonIcon} />
             <div className={style.buttonText}>Buy Now</div>
-          </div>
+          </button>
           <div
             className={`${style.button} border border-[#151c22]  bg-[#363840] hover:bg-[#4c505c]`}
           >
