@@ -31,8 +31,8 @@ const Purchase = ({ isListed, selectedNft, listings }) => {
     })()
   }, [selectedNft, isListed, listings])
 
-  console.log('selectedMarketNft', selectedMarketNft)
-  console.log('listings', listings)
+  // console.log('selectedMarketNft', selectedMarketNft)
+  // console.log('listings', listings)
 
   useEffect(() => {
     if (!selectedMarketNft || !selectedNft) return
@@ -55,6 +55,9 @@ const Purchase = ({ isListed, selectedNft, listings }) => {
     module = marketplaceContract
   ) => {
     if (!address) return
+    // Error: This action requires a connected wallet to sign a transaction. Pass a valid signer to the SDK. -> Resolved
+    // If the application does not receive the wallet address, the action is not performed, later on, block the page view if this happens
+    console.log(address)
     await module.buyoutListing(listingId, quantityDesired)
     confirmPurchase()
   }
