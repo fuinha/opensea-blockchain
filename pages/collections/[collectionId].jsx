@@ -1,15 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { client } from '../../lib/sanityClient'
-import { useAddress } from '@thirdweb-dev/react'
 import { ThirdwebSDK } from '@thirdweb-dev/sdk'
 
 import Header from '../../components/Header'
+import NFTCard from '../../components/NFTCard'
 import { CgWebsite } from 'react-icons/cg'
 import { AiOutlineInstagram, AiOutlineTwitter } from 'react-icons/ai'
 import { HiDotsVertical } from 'react-icons/hi'
-import NFTCard from '../../components/NFTCard'
 
 const style = {
   bannerImageContainer: `h-[20vh] w-screen overflow-hidden flex justify-center items-center`,
@@ -20,7 +19,7 @@ const style = {
   profileImg: `w-40 h-40 object-cover rounded-full border border-gray-700 mt-[-4rem]`,
   socialIconsContainer: `flex text-3xl mb-[-2rem]`,
   socialIconsWrapper: `w-44`,
-  socialIconsContent: `flex container justify-between text-[1.4rem] border-2 rounded-lg px-2`,
+  socialIconsContent: `flex container cursor-pointer justify-between text-[1.4rem] border-2 rounded-lg px-2`,
   socialIcon: `my-2`,
   divider: `border-r-2`,
   title: `text-5xl font-bold mb-4`,
@@ -35,7 +34,6 @@ const style = {
 
 const Collection = () => {
   const router = useRouter()
-  const address = useAddress()
   const { collectionId } = router.query
   const [collection, setCollection] = useState({})
   const [nfts, setNfts] = useState([])
@@ -44,7 +42,6 @@ const Collection = () => {
   useEffect(() => {
     ;(async () => {
       const sdk = new ThirdwebSDK('rinkeby')
-      // sdk.getProvider
       const collection = sdk.getNFTCollection(
         '0xa08b847d5dC8833700C28200475Ac3c64cb0DFaE'
       )
@@ -60,8 +57,8 @@ const Collection = () => {
     })()
   }, [])
 
-  console.log('listings', listings)
-  console.log('nfts', nfts)
+  // console.log('listings', listings)
+  // console.log('nfts', nfts)
 
   useEffect(() => {
     const fetchCollectionData = async (sanityClient = client) => {
