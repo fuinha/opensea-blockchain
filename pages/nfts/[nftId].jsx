@@ -1,10 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ThirdwebSDK } from '@thirdweb-dev/sdk'
 import { useRouter } from 'next/router'
 
 import Header from '../../components/Header'
 import NFTImage from '../../components/nft/NFTImage'
 import GeneralDetails from '../../components/nft/GeneralDetails'
+import ItemActivity from '../../components/nft/ItemActivity'
+import Purchase from '../../components/nft/Purchase'
 
 const style = {
   wrapper: `flex flex-col items-center container-lg text-[#e5e8eb]`,
@@ -18,16 +20,18 @@ const Nft = () => {
   const [selectedNft, setSelectedNft] = useState(null)
   const [listings, setListings] = useState([])
   const router = useRouter()
-  
+
   useEffect(() => {
-    if (!router.query.nftId) return 
     const sdk = new ThirdwebSDK('rinkeby')
     const nftModule = sdk.getNFTCollection(
       '0xa08b847d5dC8833700C28200475Ac3c64cb0DFaE'
     )
-    // Get only one NFT in the collection according to the route
+    if (!router.query.nftId)
+      return // Get only one NFT in the collection according to the route
     ;(async () => {
-      const selectedNftItem = await nftModule.getTokenMetadata(router.query.nftId)
+      const selectedNftItem = await nftModule.getTokenMetadata(
+        router.query.nftId
+      )
       setSelectedNft(selectedNftItem)
     })()
   }, [router.query.nftId])
@@ -72,8 +76,14 @@ const Nft = () => {
             </div>
             <div className={style.detailsContainer}>
               <GeneralDetails selectedNft={selectedNft} />
+              <Purchase
+                isListed={router.query.isListed}
+                selectedNft={selectedNft}
+                listings={listings}
+              />
             </div>
           </div>
+          <ItemActivity />
         </div>
       </div>
     </div>
