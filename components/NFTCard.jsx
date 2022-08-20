@@ -35,7 +35,7 @@ const NFTCard = ({ nftItem, title, listings }) => {
     }
   }, [listings, nftItem])
 
-  console.log(nftItem);
+  // console.log(nftItem);
   return (
     <div
       className={style.wrapper}
