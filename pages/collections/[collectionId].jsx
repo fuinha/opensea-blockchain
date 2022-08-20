@@ -64,7 +64,7 @@ const Collection = () => {
     // console.log('calledPush in useEffect', calledPush)
     if (Boolean(address)) return
     setTimeout(() => {
-      calledPush && router.push('/')
+      calledPush && (router.push('/'))
     }, 8000)
   }, [address, calledPush, router])
 
