@@ -4,7 +4,7 @@
 
 html,
 body {
-  @apply antialiased scroll-smooth transition-all font-poppins overflow-x-hidden;
+  @apply antialiased border-0 scroll-smooth transition-all font-poppins overflow-x-hidden;
 }
 
 html,

@@ -6,7 +6,7 @@ import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 import EventItem from './itemActivity/EventItem'
 
 const style = {
-  wrapper: `w-full mt-8 border border-[#151b22] rounded-xl bg-[#303339] overflow-hidden`,
+  wrapper: `w-full rounded-xl bg-[#303339] overflow-hidden`,
   title: `bg-[#262b2f] px-6 py-4 flex items-center`,
   titleLeft: `flex-1 flex items-center text-xl font-bold`,
   titleIcon: `text-3xl mr-2`,
@@ -20,7 +20,7 @@ const style = {
 }
 
 const ItemActivity = () => {
-  const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(false)
 
   return (
     <div className={style.wrapper}>

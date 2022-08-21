@@ -20,7 +20,7 @@ const style = {
   infoContainer: `w-screen px-4`,
   midRow: `w-full flex justify-center text-white`,
   endRow: `w-full flex justify-end text-white`,
-  profileImg: `w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border border-gray-700 -mt-20 ssm:-mt-[105px] md:mt-[-4rem]`,
+  profileImg: `w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border border-gray-700 -mt-20 md:!-mt-[80px] ssm:-mt-[105px]`,
   socialIconsContainer: `hidden md:flex text-3xl mb-[-2rem]`,
   socialIconsWrapper: `w-44`,
   socialIconsContent: `flex container cursor-pointer justify-between text-[1.4rem] border-2 rounded-lg px-2`,
@@ -28,8 +28,7 @@ const style = {
   divider: `border-r-2`,
   title: `text-5xl font-bold mb-4`,
   createdBy: `text-lg mb-4`,
-  statsContainer: `w-[60vw] md:w-[44vw] space-y-8 md:space-y-0 flex flex-col md:flex-row justify-between py-4 border border-gray-700 rounded-xl mb-4`,
-  collectionStat: `md:w-1/4`,
+  statsContainer: `w-[60vw] px-8 md:w-[44vw] space-y-8 md:space-y-0 flex flex-col md:flex-row justify-between py-4 border border-gray-700 rounded-xl mb-4`,
   statValue: `text-3xl font-bold w-full flex items-center justify-center`,
   ethLogo: `h-6 mr-2`,
   statName: `text-lg w-full text-center mt-1`,
@@ -206,17 +205,17 @@ const Collection = () => {
             <>
               <div className={style.midRow}>
                 <div className={style.statsContainer}>
-                  <div className={style.collectionStat}>
+                  <div>
                     <div className={style.statValue}>{nfts.length}</div>
                     <div className={style.statName}>items</div>
                   </div>
-                  <div className={style.collectionStat}>
+                  <div>
                     <div className={style.statValue}>
                       {collection?.allOwners ? collection.allOwners.length : ''}
                     </div>
                     <div className={style.statName}>owners</div>
                   </div>
-                  <div className={style.collectionStat}>
+                  <div>
                     <div className={style.statValue}>
                       <img
                         src="/eth.png"
@@ -227,7 +226,7 @@ const Collection = () => {
                     </div>
                     <div className={style.statName}>floor price</div>
                   </div>
-                  <div className={style.collectionStat}>
+                  <div>
                     <div className={style.statValue}>
                       <img
                         src="/eth.png"

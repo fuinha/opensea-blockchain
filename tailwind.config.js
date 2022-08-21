@@ -7,12 +7,12 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['ui-sans-serif', 'system-ui'],
-      'poppins': ['Poppins'],
+      poppins: ['Poppins'],
     },
     extend: {
       screens: {
-        'ssm': '420px',
-      }
+        ssm: '420px',
+      },
     },
   },
   plugins: [],
