@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { ThirdwebSDK } from '@thirdweb-dev/sdk'
 import { useAddress } from '@thirdweb-dev/react'
 import { client } from '../../lib/sanityClient'
@@ -16,31 +16,31 @@ import { HiDotsVertical } from 'react-icons/hi'
 
 const style = {
   bannerImageContainer: `h-[20vh] w-screen overflow-hidden flex justify-center items-center`,
-  bannerImage: `object-cover w-full pt-24`,
+  bannerImage: `object-contain -mt-[100px] md:object-cover w-full md:pt-24`,
   infoContainer: `w-screen px-4`,
   midRow: `w-full flex justify-center text-white`,
   endRow: `w-full flex justify-end text-white`,
-  profileImg: `w-40 h-40 object-cover rounded-full border border-gray-700 mt-[-4rem]`,
-  socialIconsContainer: `flex text-3xl mb-[-2rem]`,
+  profileImg: `w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border border-gray-700 -mt-40 md:mt-[-4rem]`,
+  socialIconsContainer: `hidden md:flex text-3xl mb-[-2rem]`,
   socialIconsWrapper: `w-44`,
   socialIconsContent: `flex container cursor-pointer justify-between text-[1.4rem] border-2 rounded-lg px-2`,
   socialIcon: `my-2`,
   divider: `border-r-2`,
   title: `text-5xl font-bold mb-4`,
   createdBy: `text-lg mb-4`,
-  statsContainer: `w-[44vw] flex justify-between py-4 border border-gray-700 rounded-xl mb-4`,
-  collectionStat: `w-1/4`,
+  statsContainer: `w-[60vw] md:w-[44vw] space-y-8 md:space-y-0 flex flex-col md:flex-row justify-between py-4 border border-gray-700 rounded-xl mb-4`,
+  collectionStat: `md:w-1/4`,
   statValue: `text-3xl font-bold w-full flex items-center justify-center`,
   ethLogo: `h-6 mr-2`,
   statName: `text-lg w-full text-center mt-1`,
-  description: `text-[#8a939b] text-xl w-max-1/4 flex-wrap mt-4`,
+  description: `text-center text-[#8a939b] text-xl w-max-1/4 flex-wrap mt-4`,
 }
 
 const Collection = () => {
   const address = useAddress()
   const router = useRouter()
   const { collectionId } = router.query
-  const [collection, setCollection] = useState({})
+  const [collection, setCollection] = useState([])
   const [nfts, setNfts] = useState([])
   const [listings, setListings] = useState([])
   const [calledPush, setCalledPush] = useState(false)
@@ -71,7 +71,7 @@ const Collection = () => {
     }, 8000)
   }, [address, calledPush, router])
 
-  useEffect(() => {
+  useMemo(() => {
     setLoading(true)
     ;(async () => {
       const sdk = new ThirdwebSDK('rinkeby')
@@ -103,7 +103,7 @@ const Collection = () => {
         createdBy,
         contractAddress,
         "creator": createdBy->userName,
-        title, 
+        title,
         floorPrice,
         "allOwners": owners[]->, description
       }`
@@ -248,7 +248,7 @@ const Collection = () => {
             </>
           )}
 
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap items-center justify-center">
             {nfts.map((nftItem, index) => (
               <NFTCard
                 key={index}

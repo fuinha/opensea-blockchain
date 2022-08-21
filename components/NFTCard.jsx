@@ -5,7 +5,7 @@ import Router from 'next/router'
 import { BiHeart } from 'react-icons/bi'
 
 const style = {
-  wrapper: `bg-[#303339] flex-auto w-[14rem] h-[22rem] my-10 mx-5 rounded-2xl overflow-hidden cursor-pointer`,
+  wrapper: `bg-[#303339] flex-auto max-w-[230px] w-[14rem] h-[22rem] my-10 mx-5 rounded-2xl overflow-hidden cursor-pointer`,
   imgContainer: `h-2/3 w-full overflow-hidden flex justify-center items-center`,
   nftImg: `w-full object-cover`,
   details: `p-3`,
