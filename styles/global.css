@@ -4,7 +4,7 @@
 
 html,
 body {
-  @apply antialiased scroll-smooth transition-all font-poppins;
+  @apply antialiased scroll-smooth transition-all font-poppins overflow-x-hidden;
 }
 
 html,
@@ -21,4 +21,13 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-t to-slate-500 from-slate-700 rounded-full
 }

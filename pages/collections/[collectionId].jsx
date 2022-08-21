@@ -15,12 +15,12 @@ import { AiOutlineInstagram, AiOutlineTwitter } from 'react-icons/ai'
 import { HiDotsVertical } from 'react-icons/hi'
 
 const style = {
-  bannerImageContainer: `h-[20vh] w-screen overflow-hidden flex justify-center items-center`,
-  bannerImage: `object-contain -mt-[100px] md:object-cover w-full md:pt-24`,
+  bannerImageContainer: `h-[30vh] w-screen overflow-hidden flex justify-center items-center`,
+  bannerImage: `-mt-[50px] md:-mt-0 object-cover w-full md:pt-24`,
   infoContainer: `w-screen px-4`,
   midRow: `w-full flex justify-center text-white`,
   endRow: `w-full flex justify-end text-white`,
-  profileImg: `w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border border-gray-700 -mt-40 md:mt-[-4rem]`,
+  profileImg: `w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border border-gray-700 -mt-20 ssm:-mt-[105px] md:mt-[-4rem]`,
   socialIconsContainer: `hidden md:flex text-3xl mb-[-2rem]`,
   socialIconsWrapper: `w-44`,
   socialIconsContent: `flex container cursor-pointer justify-between text-[1.4rem] border-2 rounded-lg px-2`,
@@ -248,15 +248,17 @@ const Collection = () => {
             </>
           )}
 
-          <div className="flex flex-wrap items-center justify-center">
-            {nfts.map((nftItem, index) => (
-              <NFTCard
-                key={index}
-                nftItem={nftItem.metadata}
-                title={collection?.title}
-                listings={listings}
-              />
-            ))}
+          <div className="flex items-center justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6">
+              {nfts.map((nftItem, index) => (
+                <NFTCard
+                  key={index}
+                  nftItem={nftItem.metadata}
+                  title={collection?.title}
+                  listings={listings}
+                />
+              ))}
+            </div>
           </div>
         </div>
       )}

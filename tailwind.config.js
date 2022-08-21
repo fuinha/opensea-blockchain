@@ -9,7 +9,11 @@ module.exports = {
       sans: ['ui-sans-serif', 'system-ui'],
       'poppins': ['Poppins'],
     },
-    extend: {},
+    extend: {
+      screens: {
+        'ssm': '420px',
+      }
+    },
   },
   plugins: [],
 }

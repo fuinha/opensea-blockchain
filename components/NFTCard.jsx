@@ -5,9 +5,9 @@ import Router from 'next/router'
 import { BiHeart } from 'react-icons/bi'
 
 const style = {
-  wrapper: `bg-[#303339] flex-auto max-w-[230px] w-[14rem] h-[22rem] my-10 mx-5 rounded-2xl overflow-hidden cursor-pointer`,
-  imgContainer: `h-2/3 w-full overflow-hidden flex justify-center items-center`,
-  nftImg: `w-full object-cover`,
+  wrapper: `bg-[#303339] flex-auto min-w-[250px] w-[14rem] h-[22rem] 2xl:max-h-[23rem] my-4 md:my-10 mx-5 rounded-2xl overflow-hidden cursor-pointer`,
+  imgContainer: `h-2/3 w-full -mt-[3px] overflow-hidden flex justify-center items-center`,
+  nftImg: `w-full object-contain h-full`,
   details: `p-3`,
   info: `flex justify-between text-[#e4e8eb] drop-shadow-xl`,
   infoLeft: `flex-0.6 flex-wrap`,
