@@ -49,7 +49,7 @@ const ItemActivity = () => {
             <div className='flex-[2]'>Price</div>
             <div className='flex-[3]'>From</div>
             <div className='flex-[3]'>To</div>
-            <div className='flex-[2]'>Date</div>
+            <div className='hidden md:flex flex-[2]'>Date</div>
           </div>
           {dummyEvents.map((event, index) => (
             <EventItem key={index} event={event} />

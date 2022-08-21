@@ -6,7 +6,7 @@ import { IoMdWallet } from 'react-icons/io'
 import toast, { Toaster } from 'react-hot-toast'
 
 const style = {
-  button: `md:mr-8 flex items-center py-2 px-4 md:px-12 rounded-lg cursor-pointer`,
+  button: `md:!mr-8 flex items-center py-2 px-4 md:px-12 rounded-lg cursor-pointer`,
   buttonIcon: `text-xl`,
   buttonText: `md:ml-2 mdtext-lg text-base font-semibold`,
 }

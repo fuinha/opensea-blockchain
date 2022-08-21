@@ -28,7 +28,7 @@ const EventItem = ({ event }) => {
       </div>
       <div className={`${style.accent} flex-[3]`}>{event.from}</div>
       <div className={`${style.accent} flex-[3]`}>{event.to}</div>
-      <div className={`${style.accent} flex-[2]`}>{event.date}</div>
+      <div className={`${style.accent} hidden md:flex flex-[2]`}>{event.date}</div>
     </div>
   )
 }

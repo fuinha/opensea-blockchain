@@ -6,7 +6,7 @@ const style = {
   container: `before:content-[''] -z-10 before:bg-red-500 before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[url('/hero.png')] before:bg-cover before:bg-center before:opacity-40 before:blur-[1px]`,
   contentWrapper: `relative flex flex-wrap items-center justify-center h-screen text-center md:text-start`,
   copyContainer: `md:w-1/2 md:px-4 md:px-0`,
-  title: 'relative text-white text-5xl md:text-[46px] font-semibold leading-normal tracking-wide',
+  title: 'relative text-white text-5xl md:text-[46px] font-semibold md:leading-normal tracking-wide',
   description: `text-[#b2b8bd] z-10 container-[400px] text-2xl mt-[0.8rem] mb-[2.5rem]`,
   ctaContainer: `flex flex-col space-y-4 md:space-y-0 md:flex-row text-center justify-center md:justify-start items-center`,
   accentedButton: `relative text-lg font-semibold px-12 py-4 bg-[#2181e2] rounded-lg md:mr-5 text-white hover:bg-[#42a0ff] cursor-pointer`,
