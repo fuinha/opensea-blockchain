@@ -32,6 +32,7 @@ A smart contract is a `self-executing computer protocol` created with the popula
 In order to be considered a smart contract, the transaction must involve more than a simple transfer of virtual currency between two people (like a payment transfer, for example), it must involve two or more parties (like every contract), and the implementation of the contract should not require direct human involvement from the moment it is signed. Instead of being written on paper in legal language, they are implemented in a `programming language and run on a computer`. In this protocol, strict rules and consequences are defined, in the same way as a legal document, stating the obligations, benefits and penalties of those involved. Furthermore, unlike a traditional contract, a smart contract is able to obtain information, process it and take the appropriate actions provided for in accordance with the contract rules.
 
 *<i>en.wikipedia.org/wiki/Smart_contract</i>
+
 <br />
 
 ## Thirdweb | Build web3 apps
