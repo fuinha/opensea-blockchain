@@ -37,6 +37,82 @@ In order to be considered a smart contract, the transaction must involve more th
 
 ## Thirdweb | Build web3 apps
 
-Smart contracts you control. Powerful SDKs and intuitive tools for developers. Ship on-chain faster.
+Smart contracts you control. Powerful `SDKs (Software Development Kit)` and intuitive tools for developers. Ship on-chain faster.
+
+### You can install this SDK with either npm: 
+
+- `npm install @thirdweb-dev/react @thirdweb-dev/sdk ethers`
+
+### Configure the thirdweb Provider
+
+In order to use the hooks offered by the React SDK, you need to first setup a ThirdwebProvider for your app which lets you optionally configure your app. You can use this configuration to control what networks you want users to connect to, what types of wallets can connect to your app, and the settings for the Typescript SDK.
+
+At the top level of your application, add a ThirdwebProvider as follows:
+
+```jsx
+// pages/_app.jsx
+
+import '../styles/global.css'
+import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react'
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ThirdwebProvider desiredChainId={ChainId.Rinkeby}>
+      <Component {...pageProps} />
+    </ThirdwebProvider>
+  )
+}
+
+export default MyApp
+```
+
+Now you'll be able to use all the hooks provided by the React SDK!
+
+### Let Users Connect Wallets
+
+Next, we'll add a button to our app which will let users connect their wallets. For now, we'll make it so that users with MetaMask wallets can connect.
+
+```jsx
+// pages/index.jsx
+
+import { useAddress, useMetamask } from '@thirdweb-dev/react'
+
+// ...
+export default function Home() {
+	const connectMetaMask = useMetamask()
+	const address = useAddress()
+	
+	return (
+	// ...
+	{!address ? (
+          <div className={style.walletConnectWrapper}>
+            <div className={style.container}>
+              <button
+                onClick={connectMetaMask}
+                href="#_"
+                className="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg cursor-pointer group"
+              >
+                <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#2081e2] rounded-full group-hover:w-56 group-hover:h-56"></span>
+                <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+                <span className="relative">Connect Wallet</span>
+              </button>
+              <div className={style.details}>
+                You need Metamask to be <br /> able to run this app.
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            <Header />
+            <Hero />
+          </>
+        )}
+  // ...
+}
+
+```
+
+
+Here, we use the `useMetamask` hook to handle metamask connection. When a user clicks the button, we'll call the useMetamask hook, which will prompt users to connect their metamask wallet.
 
 
