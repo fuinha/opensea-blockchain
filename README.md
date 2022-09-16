@@ -8,7 +8,6 @@
 :arrow_right: Blockchain Network <br />
 :arrow_right: Thirdweb | Build web3 apps <br />
 :arrow_right: Metamask | A crypto wallet & gateway to blockchain apps <br />
-:arrow_right: Sanity.io - Content Management System <br />
 <br />
 
 ## Blockchain Network 
