@@ -113,6 +113,6 @@ export default function Home() {
 ```
 
 
-Here, we use the `useMetamask` hook to handle metamask connection. When a user clicks the button, we'll call the useMetamask hook, which will prompt users to connect their metamask wallet.
+Here, we use the `useMetamask` hook to handle metamask connection. When a user clicks the button, we'll call the connectMetaMask, which will prompt users to connect their metamask wallet.
 
 
