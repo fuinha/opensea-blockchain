@@ -44,7 +44,7 @@ Smart contracts you control. Powerful `SDKs (Software Development Kit)` and intu
 
 ### Configure the thirdweb Provider
 
-In order to use the hooks offered by the React SDK, you need to first setup a ThirdwebProvider for your app which lets you optionally configure your app. You can use this configuration to control what networks you want users to connect to, what types of wallets can connect to your app, and the settings for the Typescript SDK.
+In order to use the hooks offered by the React SDK, you need to first setup a `ThirdwebProvider` for your app which lets you optionally configure your app. You can use this configuration to control what networks you want users to connect to, what types of wallets can connect to your app, and the settings for the Typescript SDK.
 
 At the top level of your application, add a ThirdwebProvider as follows:
 
@@ -69,7 +69,7 @@ Now you'll be able to use all the hooks provided by the React SDK!
 
 ### Let Users Connect Wallets
 
-Next, we'll add a button to our app which will let users connect their wallets. For now, we'll make it so that users with MetaMask wallets can connect.
+Next, we'll add a button to our app which will let users connect their wallets. For now, we'll make it so that users with `MetaMask` wallets can connect.
 
 ```jsx
 // pages/index.jsx
