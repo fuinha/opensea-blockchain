@@ -295,4 +295,26 @@ If the button is enabled, we can buy the item by calling the `buyItem` function 
 
 *<i>portal.thirdweb.com</i>
 
+<br />
 
+## Metamask | A crypto wallet & gateway to blockchain apps 
+
+MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain. It allows users to access their Ethereum wallet via a browser extension or mobile app, which can then be used to interact with `decentralized applications`.
+
+ETH is the second largest cryptocurrency on the market today, after Bitcoin. However, the biggest difference from it is that its goal is to go beyond cryptocurrency financial transfers.
+
+In other words, `Ethereum encourages the use of Blockchain technology` to store other relevant information, such as contracts, votes, records, images, among others.
+
+In this way, MetaMask emerges as one of the main digital wallets to store tokens, but we emphasize that it is not the only one, only having greater popularity.
+
+For investors, the biggest advantage that MetaMask presents is financial control in the cryptocurrency world. This control is essential to prevent the investor from having financial losses.
+
+<li><strong>Buy, store, send and swap tokens</strong>: Available as a browser extension and as a mobile app, MetaMask equips you with a key vault, secure login, token wallet, and token exchange-everything you need to manage your digital assets.</li>
+
+<li><strong>Explore blockchain apps</strong>: MetaMask provides the simplest yet most secure way to connect to blockchain-based applications. You are always in control when interacting on the new decentralized web.</li>
+ 
+<li><strong>Own your data</strong>: MetaMask generates passwords and keys on your device, so only you have access to your accounts and data. You always choose what to share and what to keep private.</li> <br />
+
+*<i>blog.b2bstack.com.br/o-que-e-metamask</i> <br />
+*<i>metamask.io</i> <br />
+*<i>en.wikipedia.org/wiki/MetaMask</i>
