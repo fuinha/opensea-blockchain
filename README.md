@@ -111,7 +111,192 @@ export default function Home() {
 
 ```
 
-
 Here, we use the `useMetamask` hook to handle metamask connection. When a user clicks the button, we'll call the connectMetaMask, which will prompt users to connect their metamask wallet.
+
+### Thirdweb Dashboard
+
+Here, you'll find all of the `information` you need to interact with and `manage your contract`, including:
+
+<li><strong>Explorer</strong>: call any function on your contract, and view the results.</li>
+<li><strong>Events</strong>: a live-updating feed of all events emitted by your contract.</li>
+
+As well as tabs for each extension that your contract implements:
+
+<li><strong>NFTs</strong>: since you implemented the ERC721 Standard.</li>
+<li><strong>Permissions</strong>: since you implemented the Permissions feature.</li>
+<li><strong>Settings</strong>: since you implemented the Contract Metadata and Royalty features.</li>
+
+With the Thirdweb service we can `create contracts` and `deploy them`, so we will have access to the dashboard.
+
+### Reading data from your contracts
+
+The quickest way to get started is to use the SDK as read only (no transactions). This will allow you to `query data` from any contract with no additional setup.
+
+```jsx
+// /pages/collections/[collectionId].jsx
+
+import React, { useState, useEffect, useMemo } from 'react'
+import { ThirdwebSDK } from '@thirdweb-dev/sdk'
+import { useAddress } from '@thirdweb-dev/react'
+
+const Collection = () => {
+  const address = useAddress()
+  const router = useRouter()
+  const { collectionId } = router.query
+  const [collection, setCollection] = useState([])
+  const [nfts, setNfts] = useState([])
+  const [listings, setListings] = useState([])
+  const [loading, setLoading] = useState(true)
+  
+  // ...
+   useMemo(() => {
+    setLoading(true)
+    ;(async () => {
+      const sdk = new ThirdwebSDK('rinkeby') 
+      const collection = sdk.getNFTCollection('<CONTRACT_ADDRESS>')
+      const marketplace = sdk.getMarketplace('<CONTRACT_ADDRESS>')
+
+      // listing -> be available for purchase
+      const listings = await marketplace.getActiveListings()
+      const nfts = await collection.getAll()
+      setListings(listings)
+      setNfts(nfts)
+      setLoading(false)
+    })()
+  }, [])
+// ...
+}
+
+export default Collection
+```
+
+### Executing transactions on your contracts by frontend
+
+In order to execute transactions on your contract, the SDK needs to know which wallet is executing those transactions. This can be done two ways:
+
+- Using your own private key (typically used in the `backend` or scripts)
+- By connecting to a user wallet (typically used in the `frontend`)
+
+```js
+func (*MarketplaceEncoder) BuyoutListing
+```
+Get the `transaction data` for the `buyout listing transaction`. This method will throw an error if the listing requires payment in ERC20 tokens and the ERC20 tokens haven't yet been approved by the spender.
+
+```js
+func (encoder *MarketplaceEncoder) BuyoutListing(ctx context.Context, signerAddress string, listingId int, quantityDesired int, receiver string) (*types.Transaction, error)
+```
+
+<li><strong>signerAddress</strong>: the address intended to sign the transaction</li>
+
+<li><strong>listingId</strong>: the ID of the listing to buyout</li>
+
+<li><strong>quantityDesired</strong>: the quantity of the listed tokens to purchase</li>
+
+<li><strong>receiver</strong>: the address to receive the purchased tokens</li>
+
+<li><strong>returns</strong>: the transaction data for this purchase</li> <br />
+
+```jsx
+// components/nft/Purchase.jsx
+
+const buyItem = async (
+	listingId = selectedMarketNft.id,
+	quantityDesired = 1,
+	module = marketplaceContract
+) => {
+	if (!address) return
+	// Error: This action requires a connected wallet to sign a transaction. Pass a valid signer to the SDK. -> Resolved
+	// If the application does not receive the wallet address, the action is not performed, later on, block the page view if this happens
+	console.log(address)
+	await module.buyoutListing(listingId, quantityDesired)
+	confirmPurchase()
+}
+```
+
+#### Example
+
+First we check if the NFT is available for purchase (listed) in `pages/nfts/[nftId].jsx` and if so we enable the purchase functionality:
+
+```jsx
+// pages/nfts/[nftId].jsx
+
+useEffect(() => {
+  const sdk = new ThirdwebSDK('rinkeby')
+  const marketPlaceModule = sdk.getMarketplace(
+    '0x7600aB00c4524E11da066650Dd053040D0880EB0'
+  )
+  ;(async () => {
+    // Get all NFT in marketplace (listings)
+    const listings = await marketPlaceModule.getActiveListings()
+    setListings(listings)
+  })()
+}, [])
+```
+
+And pass it via props to the Purchase component and `check if there are any NFTs listed` and enable the button or not:
+
+```jsx
+// components/nft/Purchase.jsx
+
+const Purchase = ({ isListed, selectedNft, listings }) => {
+  const [selectedMarketNft, setSelectedMarketNft] = useState()
+  const [enableButton, setEnableButton] = useState()
+  const address = useAddress()
+  const marketplaceContract = useMarketplace(
+    '0x7600aB00c4524E11da066650Dd053040D0880EB0'
+  )
+
+  useEffect(() => {
+    if (!listings || isListed === 'false') return
+    ;(async () => {
+      setSelectedMarketNft(
+        listings.find(
+          (marketNft) =>
+            marketNft.asset?.id.toNumber() === selectedNft.id.toNumber()
+        )
+      )
+    })()
+  }, [selectedNft, isListed, listings])
+
+  useEffect(() => {
+    if (!selectedMarketNft || !selectedNft) return
+    setEnableButton(true)
+  }, [address, selectedMarketNft, selectedNft])
+// ...
+}
+```
+
+If the button is enabled, we can buy the item by calling the `buyItem` function created earlier through `buyoutListing` to perform the transaction:
+
+```jsx
+// components/nft/Purchase.jsx
+
+{isListed === 'true' ? (
+  <>
+    <button
+      onClick={() => {
+        enableButton ? buyItem(selectedMarketNft.id, 1) : null
+      }}
+      className={`${style.button} bg-[#2081e2] hover:bg-[#42a0ff]`}
+    >
+      <IoMdWallet className={style.buttonIcon} />
+      <div className={style.buttonText}>Buy Now</div>
+    </button>
+    <div
+      className={`${style.button} border border-[#151c22]  bg-[#363840] hover:bg-[#4c505c]`}
+    >
+      <HiTag className={style.buttonIcon} />
+      <div className={style.buttonText}>Make Offer</div>
+    </div>
+  </>
+) : (
+  <div className={`${style.button} bg-[#2081e2] hover:bg-[#42a0ff]`}>
+    <IoMdWallet className={style.buttonIcon} />
+    <div className={style.buttonText}>List Item</div>
+  </div>
+)}
+```
+
+*<i>portal.thirdweb.com</i>
 
 
