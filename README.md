@@ -222,9 +222,7 @@ First we check if the NFT is available for purchase (listed) in `pages/nfts/[nft
 
 useEffect(() => {
   const sdk = new ThirdwebSDK('rinkeby')
-  const marketPlaceModule = sdk.getMarketplace(
-    '0x7600aB00c4524E11da066650Dd053040D0880EB0'
-  )
+  const marketPlaceModule = sdk.getMarketplace('<CONTRACT_ADDRESS>')
   ;(async () => {
     // Get all NFT in marketplace (listings)
     const listings = await marketPlaceModule.getActiveListings()
@@ -242,9 +240,7 @@ const Purchase = ({ isListed, selectedNft, listings }) => {
   const [selectedMarketNft, setSelectedMarketNft] = useState()
   const [enableButton, setEnableButton] = useState()
   const address = useAddress()
-  const marketplaceContract = useMarketplace(
-    '0x7600aB00c4524E11da066650Dd053040D0880EB0'
-  )
+  const marketplaceContract = useMarketplace('<CONTRACT_ADDRESS>')
 
   useEffect(() => {
     if (!listings || isListed === 'false') return
